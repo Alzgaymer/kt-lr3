@@ -22,16 +22,22 @@ fun FactoryNavHost(
     navController: NavHostController,
     modifier: Modifier = Modifier,
 ){
+    val homeViewModel: HomeViewModel =
+        viewModel<HomeViewModel>(factory = AppViewModelProvider.Factory)
+    val factoryEntryViewModel: FactoryEntryViewModel =
+        viewModel<FactoryEntryViewModel>(factory = AppViewModelProvider.Factory)
+    val factoryDetailsViewModel: FactoryDetailsViewModel =
+        viewModel<FactoryDetailsViewModel>(factory = AppViewModelProvider.Factory)
+    val factoryEditViewModel: FactoryEditViewModel =
+        viewModel<FactoryEditViewModel>(factory = AppViewModelProvider.Factory)
     NavHost(
         navController = navController,
         startDestination = HomeDestination.route,
         modifier = modifier,
     ) {
         composable(route = HomeDestination.route) {
-            val viewModel: HomeViewModel =
-                 viewModel<HomeViewModel>(factory = AppViewModelProvider.Factory)
             HomeScreen(
-                factories = viewModel.uiState.value.factories,
+                factories = homeViewModel.uiState.value.factories,
                 navigateToFactoryEntry = {navController.navigate(FactoryEntryDestination.route)},
                 navigateToFactoryUpdate = {
                     navController.navigate("${FactoryDetailsDestination.route}/${it}")
@@ -40,15 +46,13 @@ fun FactoryNavHost(
         }
 
         composable(route = FactoryEntryDestination.route) {
-            val viewModel: FactoryEntryViewModel =
-                viewModel<FactoryEntryViewModel>(factory = AppViewModelProvider.Factory)
-            val uiState = viewModel.uiState.collectAsState().value
+            val uiState = factoryEntryViewModel.uiState.collectAsState().value
             FactoryEntryScreen(
                 navigateBack = {navController.popBackStack()},
                 onNavigateUp = {navController.navigateUp()},
                 uiState = uiState,
-                updateUiState = viewModel::updateUiState,
-                saveFactory = viewModel::saveFactory,
+                updateUiState = factoryEntryViewModel::updateUiState,
+                saveFactory = factoryEntryViewModel::saveFactory,
             )
         }
 
@@ -57,13 +61,11 @@ fun FactoryNavHost(
             arguments = listOf(navArgument(FactoryDetailsDestination.factoryIdArg){
                 type = NavType.StringType})
         ){
-                val viewModel: FactoryDetailsViewModel =
-                   viewModel<FactoryDetailsViewModel>(factory = AppViewModelProvider.Factory)
-                FactoryDetailsScreen(
+            FactoryDetailsScreen(
                     navigateToEditFactory = {navController.navigate("${FactoryDetailsDestination.route}/$it")} ,
                     navigateBack = {navController.navigateUp()},
-                    uiState = viewModel.uiState.value,
-                    deleteFactory = viewModel::deleteFactory,
+                    uiState = factoryDetailsViewModel.uiState.value,
+                    deleteFactory = factoryDetailsViewModel::deleteFactory,
                 )
         }
 
@@ -72,16 +74,13 @@ fun FactoryNavHost(
             arguments = listOf(navArgument(FactoryEditDestination.itemIdArg) {
                 type = NavType.StringType})
         ){
-            val viewModel: FactoryEditViewModel =
-                 viewModel<FactoryEditViewModel>(factory = AppViewModelProvider.Factory)
-            val uiState = viewModel.uiState.collectAsState().value
-
+            val uiState = factoryEditViewModel.uiState.collectAsState().value
             FactoryEditScreen(
                 navigateBack = {navController.popBackStack()},
                 onNavigateUp = {navController.navigateUp()},
                 uiState = uiState,
-                updateUiState = viewModel::updateUiState,
-                updateFactory = viewModel::updateFactory,
+                updateUiState = factoryEditViewModel::updateUiState,
+                updateFactory = factoryEditViewModel::updateFactory,
             )
         }
 
