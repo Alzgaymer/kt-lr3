@@ -14,8 +14,10 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kt_lr_3.R
 import com.example.kt_lr_3.domain.factory.Factory
+import com.example.kt_lr_3.ui.AppViewModelProvider
 import com.example.kt_lr_3.ui.factory.FactoryTopAppBar
 import com.example.kt_lr_3.ui.navigation.NavigationDestination
 
@@ -29,9 +31,10 @@ object HomeDestination : NavigationDestination {
 fun HomeScreen(
     navigateToFactoryEntry: () -> Unit,
     navigateToFactoryUpdate: (String) -> Unit,
-    factories: List<Factory>,
     modifier: Modifier = Modifier,
+    viewModel: HomeViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
+
     Scaffold(
         topBar = {
             FactoryTopAppBar(
@@ -53,7 +56,7 @@ fun HomeScreen(
         },
     ) { innerPadding ->
         HomeBody(
-            factoryList = factories,
+            factoryList = viewModel.uiState.value.factories,
             onFactoryClick = navigateToFactoryUpdate,
             modifier = modifier.padding(innerPadding)
         )

@@ -7,7 +7,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kt_lr_3.R
+import com.example.kt_lr_3.ui.AppViewModelProvider
 import com.example.kt_lr_3.ui.navigation.NavigationDestination
 import kotlinx.coroutines.launch
 
@@ -23,11 +26,10 @@ object FactoryEditDestination : NavigationDestination {
 fun FactoryEditScreen(
     navigateBack: () -> Unit,
     onNavigateUp: () -> Unit,
-    uiState: FactoryUiState,
-    updateUiState: (FactoryDetails) -> Unit,
-    updateFactory: suspend ()-> Unit,
     modifier: Modifier = Modifier,
+    viewModel: FactoryEditViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
+    val uiState = viewModel.uiState.collectAsStateWithLifecycle().value
     val coroutineScope = rememberCoroutineScope()
     Scaffold(
         topBar = {
@@ -41,10 +43,10 @@ fun FactoryEditScreen(
     ) { innerPadding ->
         FactoryEntryBody(
             uiState = uiState,
-            onFactoryValueChange = updateUiState,
+            onFactoryValueChange = viewModel::updateUiState,
             onSaveClick = {
                 coroutineScope.launch {
-                    updateFactory()
+                    viewModel.updateFactory()
                     navigateBack()
                 }
             },

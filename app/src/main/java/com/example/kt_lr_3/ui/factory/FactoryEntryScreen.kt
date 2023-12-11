@@ -14,7 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kt_lr_3.R
+import com.example.kt_lr_3.ui.AppViewModelProvider
 import com.example.kt_lr_3.ui.navigation.NavigationDestination
 import kotlinx.coroutines.launch
 import java.util.*
@@ -30,10 +33,9 @@ fun FactoryEntryScreen(
     navigateBack: () -> Unit,
     onNavigateUp: () -> Unit,
     canNavigateBack: Boolean = true,
-    uiState: FactoryUiState,
-    updateUiState: (FactoryDetails) -> Unit,
-    saveFactory: suspend () -> Unit
+    viewModel: FactoryEntryViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
+    val uiState = viewModel.uiState.collectAsStateWithLifecycle().value
     val coroutineScope = rememberCoroutineScope()
     Scaffold(
         topBar = {
@@ -46,10 +48,10 @@ fun FactoryEntryScreen(
     ) { innerPadding ->
         FactoryEntryBody(
             uiState = uiState,
-            onFactoryValueChange = updateUiState,
+            onFactoryValueChange = viewModel::updateUiState,
             onSaveClick = {
                 coroutineScope.launch {
-                    saveFactory()
+                    viewModel.saveFactory()
                     navigateBack()
                 }
             },

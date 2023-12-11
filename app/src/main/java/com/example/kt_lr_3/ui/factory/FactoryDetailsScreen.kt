@@ -15,7 +15,10 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kt_lr_3.R
+import com.example.kt_lr_3.ui.AppViewModelProvider
 import com.example.kt_lr_3.ui.navigation.NavigationDestination
 import kotlinx.coroutines.launch
 
@@ -32,9 +35,9 @@ fun FactoryDetailsScreen(
     navigateToEditFactory: (String) -> Unit,
     navigateBack: () -> Unit,
     modifier: Modifier = Modifier,
-    uiState: FactoryUiState,
-    deleteFactory: suspend () -> Unit,
+    viewModel: FactoryDetailsViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
+    val uiState = viewModel.uiState.collectAsStateWithLifecycle().value
     val coroutineScope = rememberCoroutineScope()
     Scaffold(
         topBar = {
@@ -61,7 +64,7 @@ fun FactoryDetailsScreen(
             factoryDetailsUiState = uiState.factoryDetails,
             onDelete = {
                 coroutineScope.launch {
-                    deleteFactory()
+                    viewModel.deleteFactory()
                     navigateBack()
                 }
             },
