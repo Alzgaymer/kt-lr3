@@ -14,7 +14,7 @@ class FactoryEntryViewModel(
 
     fun updateUiState(factoryDetails: FactoryDetails) {
         uiState.value =
-            FactoryUiState(factoryDetails = factoryDetails, isEntryValid = validateInput(factoryDetails)))
+            FactoryUiState(factoryDetails = factoryDetails, isEntryValid = validateInput(factoryDetails))
 
     }
 

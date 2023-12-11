@@ -25,7 +25,7 @@ import kotlinx.coroutines.launch
 object FactoryDetailsDestination : NavigationDestination {
     override val route = "factory_details"
     override val titleRes = R.string.factory_detail_title
-    const val factoryIdArg = "factoryId"
+    const val factoryIdArg = "factoryDetailsId"
     val routeWithArgs = "$route/{$factoryIdArg}"
 }
 

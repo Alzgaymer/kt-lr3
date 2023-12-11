@@ -17,8 +17,8 @@ import kotlinx.coroutines.launch
 object FactoryEditDestination : NavigationDestination {
     override val route = "factory_edit"
     override val titleRes = R.string.edit_factory_title
-    const val itemIdArg = "itemId"
-    val routeWithArgs = "$route/{$itemIdArg}"
+    const val factoryIdArg = "factoryEditId"
+    val routeWithArgs = "$route/{$factoryIdArg}"
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

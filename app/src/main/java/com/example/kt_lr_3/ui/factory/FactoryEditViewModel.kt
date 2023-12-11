@@ -15,7 +15,7 @@ class FactoryEditViewModel(
     savedStateHandle: SavedStateHandle,
     private val factoryRepository: FactoryRepository,
 ) : ViewModel() {
-    private val factoryId: UUID = UUID.fromString(savedStateHandle[FactoryDetailsDestination.factoryIdArg])
+    private val factoryId: UUID = UUID.fromString(savedStateHandle[FactoryEditDestination.factoryIdArg])
 
     val uiState = MutableStateFlow(FactoryUiState())
 
