@@ -13,10 +13,9 @@ class FactoryEntryViewModel(
 
 
     fun updateUiState(factoryDetails: FactoryDetails) {
-        viewModelScope.launch {
-            uiState.emit(
-                FactoryUiState(factoryDetails = factoryDetails, isEntryValid = validateInput(factoryDetails)))
-        }
+        uiState.value =
+            FactoryUiState(factoryDetails = factoryDetails, isEntryValid = validateInput(factoryDetails)))
+
     }
 
     suspend fun saveFactory() {
