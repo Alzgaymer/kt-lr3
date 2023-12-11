@@ -130,7 +130,7 @@ fun ItemInputForm(
             value = factoryDetails.numberOfWorkshops,
             onValueChange = { onValueChange(factoryDetails.copy(numberOfWorkshops = it)) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            label = { Text(stringResource(R.string.label_worker_salary)) },
+            label = { Text(stringResource(R.string.label_number_of_workshops)) },
             colors = OutlinedTextFieldDefaults.colors(
                 focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
                 unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
