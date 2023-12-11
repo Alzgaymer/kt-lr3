@@ -1,6 +1,7 @@
 package com.example.kt_lr_3.ui.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -14,6 +15,7 @@ import com.example.kt_lr_3.ui.factory.*
 import com.example.kt_lr_3.ui.home.HomeDestination
 import com.example.kt_lr_3.ui.home.HomeScreen
 import com.example.kt_lr_3.ui.home.HomeViewModel
+import kotlinx.coroutines.Dispatchers
 
 @Composable
 fun FactoryNavHost(
@@ -40,7 +42,7 @@ fun FactoryNavHost(
         composable(route = FactoryEntryDestination.route) {
             val viewModel: FactoryEntryViewModel =
                 viewModel<FactoryEntryViewModel>(factory = AppViewModelProvider.Factory)
-            val uiState = viewModel.uiState.collectAsStateWithLifecycle().value
+            val uiState = viewModel.uiState.collectAsState().value
             FactoryEntryScreen(
                 navigateBack = {navController.popBackStack()},
                 onNavigateUp = {navController.navigateUp()},
@@ -72,7 +74,7 @@ fun FactoryNavHost(
         ){
             val viewModel: FactoryEditViewModel =
                  viewModel<FactoryEditViewModel>(factory = AppViewModelProvider.Factory)
-            val uiState = viewModel.uiState.collectAsStateWithLifecycle().value
+            val uiState = viewModel.uiState.collectAsState().value
 
             FactoryEditScreen(
                 navigateBack = {navController.popBackStack()},

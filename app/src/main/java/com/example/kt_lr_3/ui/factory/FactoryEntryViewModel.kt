@@ -1,8 +1,10 @@
 package com.example.kt_lr_3.ui.factory
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.kt_lr_3.domain.factory.FactoryRepository
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
 
 class FactoryEntryViewModel(
     private val factoryRepository: FactoryRepository
@@ -11,8 +13,10 @@ class FactoryEntryViewModel(
 
 
     fun updateUiState(factoryDetails: FactoryDetails) {
-        uiState.value =
-            FactoryUiState(factoryDetails = factoryDetails, isEntryValid = validateInput(factoryDetails))
+        viewModelScope.launch {
+            uiState.emit(
+                FactoryUiState(factoryDetails = factoryDetails, isEntryValid = validateInput(factoryDetails)))
+        }
     }
 
     suspend fun saveFactory() {
