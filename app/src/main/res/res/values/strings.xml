@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Factory App</string>
+    <string name="attention">Attention</string>
+    <string name="back_button">Back</string>
+    <string name="delete">Delete</string>
+    <string name="delete_question">Are you sure you want to delete?</string>
+    <string name="edit_factory_title">Edit factory</string>
+    <string name="factory">Factory</string>
+    <string name="no_factory_description">There is no factories.\nTap + to add.</string>
+    <string name="factory_detail_title">factory Details</string>
+    <string name="factory_entry_title">Add factory</string>
+    <string name="factory_name_req">Factory Name *</string>
+    <string name="factory_price_req">Factory Price *</string>
+    <string name="no">No</string>
+    <string name="price">Price</string>
+    <string name="quantity_in_stock">Quantity\nIn Stock</string>
+    <string name="quantity_req">Quantity in Stock *</string>
+    <string name="save_action">Save</string>
+    <string name="sell">Sell</string>
+    <string name="yes">Yes</string>
+    <string name="required_fields">*required fields</string>
+    <string name="label_name">Factory Name</string>
+    <string name="label_number_of_workers">Number of Workers</string>
+    <string name="label_number_of_workshops">Number of Workshops</string>
+    <string name="label_worker_salary">Worker Salary</string>
+    <string name="label_master_salary">Master Salary</string>
+    <string name="label_number_of_masters">Number of Masters (1 master per 10 workers)</string>
+    <string name="label_profit_per_worker_per_month">Profit per Worker per Month</string>
+    <string name="label_profit_per_master_per_month">Profit per Master per Month</string>
+</resources>
