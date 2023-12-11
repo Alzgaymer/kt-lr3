@@ -14,8 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
-import com.example.kt_lr_3.ui.navigation.NavigationDestination
 import com.example.kt_lr_3.R
+import com.example.kt_lr_3.ui.navigation.NavigationDestination
 import kotlinx.coroutines.launch
 import java.util.*
 

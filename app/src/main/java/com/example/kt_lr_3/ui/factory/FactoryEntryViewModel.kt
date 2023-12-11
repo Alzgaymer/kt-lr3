@@ -1,12 +1,8 @@
 package com.example.kt_lr_3.ui.factory
 
-import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.kt_lr_3.domain.factory.Factory
 import com.example.kt_lr_3.domain.factory.FactoryRepository
 import kotlinx.coroutines.flow.MutableStateFlow
-import java.util.UUID
 
 class FactoryEntryViewModel(
     private val factoryRepository: FactoryRepository

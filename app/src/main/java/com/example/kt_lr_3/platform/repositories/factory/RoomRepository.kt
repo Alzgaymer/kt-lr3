@@ -1,6 +1,5 @@
 package com.example.kt_lr_3.platform.repositories.factory
 
-import androidx.compose.runtime.collectAsState
 import com.example.kt_lr_3.domain.factory.Factory
 import com.example.kt_lr_3.domain.factory.FactoryDao
 import com.example.kt_lr_3.domain.factory.FactoryRepository

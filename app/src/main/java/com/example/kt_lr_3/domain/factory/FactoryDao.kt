@@ -2,7 +2,7 @@ package com.example.kt_lr_3.domain.factory
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
-import java.util.UUID
+import java.util.*
 
 @Dao
 interface FactoryDao {

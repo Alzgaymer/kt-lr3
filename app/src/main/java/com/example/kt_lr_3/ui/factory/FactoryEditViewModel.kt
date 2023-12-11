@@ -2,7 +2,6 @@ package com.example.kt_lr_3.ui.factory
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
 import com.example.kt_lr_3.domain.factory.FactoryRepository
 import kotlinx.coroutines.flow.MutableStateFlow
